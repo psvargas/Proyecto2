@@ -62,22 +62,22 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=34;
-      Object preKW=$fix(GCollections.asSet("p","pl","plu","plus","t","ti","tim","time","times"));
       $line=35;
-      Object Q=$fix(GCollections.asSet("I","Id","p","pl","plu","plus","t","ti","tim","time","times","Num","Err"));
-      $line=37;
-      Object \u03A3=$fix($opUnionY($opUnionY($opIntvlY('0','9'),$opIntvlY('a','z')),GCollections.asSet('(',')',' ')));
-      $line=38;
+      Object Q=$fix(GCollections.asSet("I","R","RO","ROB","ROBO","ROBOT","ROBOT_","ROBOT_R","V","VA","VAR","VARS","B","BE","BEG","BEGI","BEGIN","E","EN","END","a","as","ass","assi","assig","assign","var","num","m","mo","mov","move","moveI","moveIn","moveInD","moveInDi","moveInDir","moveT","MoveTo","moveTo","moveToT","moveToTh","moveToThe","f","fr","fro","fron","front","b","ba","bac","back","t","tu","tur","turn","l","le","lef","left","r","ri","rig","righ","right","a","ar","aro","arou","aroun","around","f","fa","fac","face","n","no","nor","nort","north","s","so","sou","sout","south","e","ea","eas","east","w","we","wes","west","p","pu","put","pi","pic","pick","B","Ba","Bal","Ball","Ballo","Balloo","Balloon","Balloons","C","Ch","Chi","Chip","Chips","s","sk","ski","skip","Err"));
+      $line=45;
+      Object \u03A3_0=$fix($opUnionY($opUnionY($opIntvlY('0','9'),$opIntvlY('a','z')),$opIntvlY('A','Z')));
+      $line=46;
+      Object \u03A3=$fix($opUnionY(\u03A3_0,GCollections.asSet(':',';','(',')',' ',',','\n','\t','_')));
+      $line=47;
       Object Out=$fix(GCollections.asSet('(',')','+','*','v','n'));
-      $line=39;
+      $line=48;
       Object q_0=$fix("I");
-      $line=40;
+      $line=49;
       Object F=$fix(GCollections.asSet("I"));
-      $line=41;
+      $line=50;
       $result=$invokeConstructor(GDeterministicTransducer.class,new Object[]{Q,\u03A3,Out,q_0,F,new GMethod(Lexer.class,"\u03B4"),new GMethod(Lexer.class,"g"),new GMethod(Lexer.class,"h")});
       if (true) break $try;
-      $line=42;
+      $line=51;
       $rethrow(new RuntimeException("The function \"createTransducer()\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -89,105 +89,105 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=45;
+      $line=54;
       if ($bool($opEqualY(q,"Err"))) {
-        $line=45;
+        $line=54;
         $result="Err";
         if (true) break $try;
       }
       else {
-        $line=46;
+        $line=55;
         if ($opMembrY(\u03C3,GCollections.asSet('(',')',' '))) {
-          $line=46;
+          $line=55;
           $result="I";
           if (true) break $try;
         }
         else {
-          $line=47;
+          $line=56;
           if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'p'))) {
-            $line=47;
+            $line=56;
             $result="p";
             if (true) break $try;
           }
           else {
-            $line=48;
+            $line=57;
             if (($opEqualY(q,"I")&&$opEqualY(\u03C3,'t'))) {
-              $line=48;
+              $line=57;
               $result="t";
               if (true) break $try;
             }
             else {
-              $line=49;
+              $line=58;
               if (($opEqualY(q,"I")&&$opMembrY(\u03C3,$opIntvlY('0','9')))) {
-                $line=49;
+                $line=58;
                 $result="Num";
                 if (true) break $try;
               }
               else {
-                $line=50;
+                $line=59;
                 if (($opEqualY(q,"Num")&&$opMembrY(\u03C3,$opIntvlY('0','9')))) {
-                  $line=50;
+                  $line=59;
                   $result="Num";
                   if (true) break $try;
                 }
                 else {
-                  $line=51;
+                  $line=60;
                   if (($opEqualY(q,"Num")&&$opMembrY(\u03C3,$opIntvlY('a','z')))) {
-                    $line=51;
+                    $line=60;
                     $result="Err";
                     if (true) break $try;
                   }
                   else {
-                    $line=53;
+                    $line=62;
                     if (($opEqualY(q,"p")&&$opEqualY(\u03C3,'l'))) {
-                      $line=53;
+                      $line=62;
                       $result="pl";
                       if (true) break $try;
                     }
                     else {
-                      $line=54;
+                      $line=63;
                       if (($opEqualY(q,"pl")&&$opEqualY(\u03C3,'u'))) {
-                        $line=54;
+                        $line=63;
                         $result="plu";
                         if (true) break $try;
                       }
                       else {
-                        $line=55;
+                        $line=64;
                         if (($opEqualY(q,"plu")&&$opEqualY(\u03C3,'s'))) {
-                          $line=55;
+                          $line=64;
                           $result="plus";
                           if (true) break $try;
                         }
                         else {
-                          $line=56;
+                          $line=65;
                           if (($opEqualY(q,"t")&&$opEqualY(\u03C3,'i'))) {
-                            $line=56;
+                            $line=65;
                             $result="ti";
                             if (true) break $try;
                           }
                           else {
-                            $line=57;
+                            $line=66;
                             if (($opEqualY(q,"ti")&&$opEqualY(\u03C3,'m'))) {
-                              $line=57;
+                              $line=66;
                               $result="tim";
                               if (true) break $try;
                             }
                             else {
-                              $line=58;
+                              $line=67;
                               if (($opEqualY(q,"tim")&&$opEqualY(\u03C3,'e'))) {
-                                $line=58;
+                                $line=67;
                                 $result="time";
                                 if (true) break $try;
                               }
                               else {
-                                $line=59;
+                                $line=68;
                                 if (($opEqualY(q,"time")&&$opEqualY(\u03C3,'s'))) {
-                                  $line=59;
+                                  $line=68;
                                   $result="times";
                                   if (true) break $try;
                                 }
                                 else {
-                                  $line=62;
+                                  $line=71;
                                   $result="Id";
                                   if (true) break $try;
                                 }
@@ -204,7 +204,7 @@ public final class Lexer {
           }
         }
       }
-      $line=64;
+      $line=73;
       $rethrow(new RuntimeException("The function \"\u03B4(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -216,10 +216,10 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=69;
+      $line=78;
       $result="";
       if (true) break $try;
-      $line=70;
+      $line=79;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -231,47 +231,47 @@ public final class Lexer {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=73;
+      $line=82;
       String s=null;
       s=$defaultValue(String.class);
-      $line=74;
+      $line=83;
       s=$cast(String.class,$fix(""));
-      $line=76;
+      $line=85;
       if ((!$opMembrY(q,GCollections.asSet("Err"))&&$opMembrY(\u03C3,GCollections.asSet('(',')',' ')))) {
-        $line=77;
+        $line=86;
         if (!$opMembrY(\u03C3,GCollections.asSet(' '))) {
-          $line=77;
+          $line=86;
           s=$cast(String.class,$fix($invokeMethod(String.class,"valueOf",true,null,new Object[]{\u03C3})));
         }
-        $line=78;
+        $line=87;
         if ($opEqualY(q,"I")) {
-          $line=78;
+          $line=87;
           $result=s;
           if (true) break $try;
         }
         else {
-          $line=79;
+          $line=88;
           if ($opEqualY(q,"plus")) {
-            $line=79;
+            $line=88;
             $result=$opAdditY("+",s);
             if (true) break $try;
           }
           else {
-            $line=80;
+            $line=89;
             if ($opEqualY(q,"times")) {
-              $line=80;
+              $line=89;
               $result=$opAdditY("*",s);
               if (true) break $try;
             }
             else {
-              $line=81;
+              $line=90;
               if ($opEqualY(q,"Num")) {
-                $line=81;
+                $line=90;
                 $result=$opAdditY("n",s);
                 if (true) break $try;
               }
               else {
-                $line=82;
+                $line=91;
                 $result=$opAdditY("v",s);
                 if (true) break $try;
               }
@@ -280,11 +280,11 @@ public final class Lexer {
         }
       }
       else {
-        $line=84;
+        $line=93;
         $result="";
         if (true) break $try;
       }
-      $line=86;
+      $line=95;
       $rethrow(new RuntimeException("The function \"h(q:Object,\u03C3:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {

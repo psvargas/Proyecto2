@@ -31,10 +31,19 @@ function createTransducer():ITransducer begin
 	// outputs a string of {'(',')','+','*','v','n'}
 
 	
-	preKW := {"p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times"} // prefixes of keywords
-	Q:= {"I","Id", "p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times", "Num","Err"}
+	//preKW := {"p", "pl" ,"plu", "plus", "t", "ti" ,"tim", "time", "times"} // prefixes of keywords
+	Q:= {"I" ,"R", "RO" ,"ROB", "ROBO", "ROBOT", "ROBOT_", "ROBOT_R" ,"V", "VA", "VAR", "VARS", "B", "BE", "BEG", 
+	"BEGI","BEGIN","E", "EN", "END", "a", "as", "ass", "assi", "assig", "assign","var", "num", "m", "mo", "mov", 
+	"move", "moveI", "moveIn", "moveInD", "moveInDi", "moveInDir","moveT","MoveTo", "moveTo", "moveToT", "moveToTh",
+	"moveToThe", "f", "fr","fro", "fron", "front", "b", "ba", "bac", "back", "t", "tu", "tur", "turn","l", "le", "lef",
+	"left", "r", "ri", "rig", "righ", "right", "a", "ar", "aro", "arou", "aroun", "around", "f", "fa", "fac", "face", 
+	"n", "no", "nor", "nort","north","s", "so", "sou", "sout", "south", "e", "ea", "eas", "east", "w", "we", "wes", 
+	"west", "p", "pu", "put", "pi", "pic", "pick", "B", "Ba", "Bal", "Ball", "Ballo", "Balloo", "Balloon", "Balloons",
+	"C", "Ch", "Chi", "Chip", "Chips", "s", "sk", "ski", "skip","Err"}
 	
-	Σ:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ {'(',')',' '} 
+	
+	Σ₀:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ ('A' ‥ 'Z')
+	Σ:= Σ₀ ∪ {':',';', '('  , ')', ' ', ',', '\n', '\t', '_'} 
 	Out:={'(',')','+','*','v','n'} 
 	q₀:="I"
 	F:= {"I"}
