@@ -58,7 +58,7 @@ end
 
 function δ(q,σ) begin
 	if (q = "Err") then return "Err"
-	elseif  σ ∈ {' ',';',',',':'} then return "I"	
+	elseif  σ ∈ {' ',';',',',':','\n','\t'} then return "I"	
 	elseif q="END" then return "I"
 		
 	elseif q= "I" and σ='R' then return "R"
@@ -80,6 +80,8 @@ function δ(q,σ) begin
    	elseif q= "I" and σ='c' then return "c"   	
    	elseif q= "I" and σ='b' then return "b"
    	elseif q= "I" and σ='s' then return "s"
+   	elseif q= "I" and σ='o' then return "o"
+   	elseif q= "I" and σ='d' then return "d"
    	elseif q= "I" and σ='E' then return "E"
    		
 		
@@ -107,37 +109,33 @@ function δ(q,σ) begin
 	elseif q= "ass" and σ='i' then return "assi"
 	elseif q= "assi" and σ='g' then return "assig"
 	elseif q= "assig" and σ='n' then return "assign"
-		
-	elseif q="I" and σ ∈ ('0' ‥ '9') then return "num"
-	elseif q="I" and σ ∈ ('a' ‥ 'z') then return "var"
-	elseif q="I" then return "I"	
 	
 	elseif q= "m" and σ='o' then return "mo"
 	elseif q= "mo" and σ='v' then return "mov"
 	elseif q= "mov" and σ='e' then return "move"
 		
-	elseif q= "move" and σ='D' then return "moveD"
-	elseif q= "moveD" and σ='i' then return "moveDi"
-	elseif q= "moveDi" and σ='r' then return "moveDir"
+	elseif q= "i" and σ='n' then return "in"
+	elseif q= "in" and σ='D' then return "inD"
+	elseif q= "inD" and σ='i' then return "inDi"
+	elseif q= "inDi" and σ='r' then return "inDir"
+		
+	elseif q= "t" and σ='o' then return "to"
+	elseif q= "to" and σ='T' then return "toT"
+	elseif q= "toT" and σ='h' then return "toTh"
+	elseif q= "toTh" and σ='e' then return "toThe"
+		
+	elseif q= "f" and σ='r' then return "fr"
+	elseif q= "fr" and σ='o' then return "fro"
+	elseif q= "fro" and σ='n' then return "fron"
+	elseif q= "fron" and σ='t' then return "front"
+	
+	elseif q= "b" and σ='a' then return "ba"
+	elseif q= "ba" and σ='c' then return "bac"
+	elseif q= "bac" and σ='k' then return "back"
 	
 	elseif q= "t" and σ='u' then return "tu"
 	elseif q= "tu" and σ='r' then return "tur"
 	elseif q= "tur" and σ='n' then return "turn"
-	
-	elseif q= "f" and σ='a' then return "fa"
-	elseif q= "fa" and σ='c' then return "fac"
-	elseif q= "fac" and σ='e' then return "face"
-	
-	elseif q= "P" and σ='u' then return "Pu"
-	elseif q= "Pu" and σ='t' then return "Put"
-	
-	elseif q= "P" and σ='i' then return "Pi"
-	elseif q= "Pi" and σ='c' then return "Pic"
-	elseif q= "Pic" and σ='k' then return "Pick"
-	
-	elseif q= "S" and σ='k' then return "Sk"
-	elseif q= "Sk" and σ='i' then return "Ski"
-	elseif q= "Ski" and σ='p' then return "Skip"
 	
 	elseif q= "l" and σ='e' then return "le"
 	elseif q= "le" and σ='f' then return "lef"
@@ -153,7 +151,11 @@ function δ(q,σ) begin
 	elseif q= "aro" and σ='u' then return "arou"
 	elseif q= "arou" and σ='n' then return "aroun"
 	elseif q= "aroun" and σ='d' then return "around"
-	
+		
+	elseif q= "f" and σ='a' then return "fa"
+	elseif q= "fa" and σ='c' then return "fac"
+	elseif q= "fac" and σ='e' then return "face"		
+		
 	elseif q= "n" and σ='o' then return "no"
 	elseif q= "no" and σ='r' then return "nor"
 	elseif q= "nor" and σ='t' then return "nort"
@@ -172,6 +174,15 @@ function δ(q,σ) begin
 	elseif q= "we" and σ='s' then return "wes"
 	elseif q= "wes" and σ='t' then return "west"
 	
+	elseif q= "p" and σ='u' then return "pu"
+	elseif q= "pu" and σ='t' then return "put"
+	
+	elseif q= "p" and σ='i' then return "pi"
+	elseif q= "pi" and σ='c' then return "pic"
+	elseif q= "pic" and σ='k' then return "pick"
+		
+	elseif q= "o" and σ='f' then return "of"
+	
 	elseif q= "B" and σ='a' then return "Ba"
 	elseif q= "Ba" and σ='l' then return "Bal"
 	elseif q= "Bal" and σ='l' then return "Ball"
@@ -185,32 +196,65 @@ function δ(q,σ) begin
 	elseif q= "Chi" and σ='p' then return "Chip"
 	elseif q= "Chip" and σ='s' then return "Chips"
 	
-	elseif q= "f" and σ='r' then return "fr"
-	elseif q= "fr" and σ='o' then return "fro"
-	elseif q= "fro" and σ='n' then return "fron"
-	elseif q= "fron" and σ='t' then return "front"
-	
-	elseif q= "b" and σ='a' then return "ba"
-	elseif q= "ba" and σ='c' then return "bac"
-	elseif q= "bac" and σ='k' then return "back"
-	
+	elseif q= "S" and σ='k' then return "Sk"
+	elseif q= "Sk" and σ='i' then return "Ski"
+	elseif q= "Ski" and σ='p' then return "Skip"
+    
+    elseif q= "i" and σ='f' then return "if"
+   
+    elseif q= "t" and σ='h' then return "th"
+	elseif q= "th" and σ='e' then return "the"
+	elseif q= "the" and σ='n' then return "then"
 		
-    elseif q="I" and σ='p' then return "p"
-	elseif q="I" and σ='t' then return "t"
-	elseif q="I" and σ ∈ ('0' ‥ '9') then return "Num"
-	elseif	q="Num" and σ ∈ ('0' ‥ '9') then return "Num"
-	elseif	q="Num" and σ ∈ ('a' ‥ 'z') then return "Err"
+	elseif q= "e" and σ='l' then return "el"
+	elseif q= "el" and σ='s' then return "els"
+	elseif q= "els" and σ='e' then return "else"
+		
+	elseif q= "w" and σ='h' then return "wh"
+	elseif q= "wh" and σ='i' then return "whi"
+	elseif q= "whi" and σ='l' then return "whil"
+	elseif q= "whil" and σ='e' then return "while"
+    
+    elseif q= "d" and σ='o' then return "do"
+    
+    elseif q= "r" and σ='e' then return "re"
+	elseif q= "re" and σ='p' then return "rep"
+	elseif q= "rep" and σ='e' then return "repe"
+	elseif q= "repe" and σ='a' then return "repea"
+	elseif q= "repea" and σ='t' then return "repeat"
+		
+	elseif q= "t" and σ='i' then return "ti"
+	elseif q= "ti" and σ='m' then return "tim"
+	elseif q= "tim" and σ='e' then return "time"
+	elseif q= "time" and σ='s' then return "times"
 	
-	elseif q="p" and σ='l' then return "pl" 
-    elseif q="pl" and σ='u' then return "plu" 
-    elseif q="plu" and σ='s' then return "plus" 
-	elseif q="t" and σ='i' then return "ti" 
-    elseif q="ti" and σ='m' then return "tim" 
-    elseif q="tim" and σ='e' then return "time" 
-    elseif q="time" and σ='s' then return "times" 
-    
-    
-    else  return "Id"
+	elseif q= "fac" and σ='i' then return "faci"		
+	elseif q= "faci" and σ='n' then return "facin"		
+	elseif q= "facin" and σ='g' then return "facing"		
+	
+	elseif q= "c" and σ='a' then return "ca"
+	elseif q= "ca" and σ='n' then return "can"	
+	elseif q= "can" and σ='P' then return "canP"
+	elseif q= "canP" and σ='i' then return "canPi"
+	elseif q= "canPi" and σ='c' then return "canPic"
+	elseif q= "canPic" and σ='k' then return "canPick"
+		
+	elseif q= "canP" and σ='u' then return "canPu"
+	elseif q= "canPu" and σ='t' then return "canPut"
+		
+	elseif q= "can" and σ='M' then return "canM"
+	elseif q= "canM" and σ='o' then return "canMo"
+	elseif q= "canMo" and σ='v' then return "canMov"
+	elseif q= "canMov" and σ='e' then return "canMove"
+	
+	elseif q= "n" and σ='o' then return "no"
+	elseif q= "no" and σ='t' then return "not"
+	
+	elseif q="I" and σ ∈ ('0' ‥ '9') then return "num"
+	elseif q="I" and σ ∈ ('a' ‥ 'z') then return "var"
+	//elseif q="I" then return "I"	
+	
+    else  return "Err"
     end	
 end 
 
@@ -224,12 +268,12 @@ function h(q,σ) begin
 	var s: String
 	s := λ
 
-	if q ∉ {"Err"} and σ ∈ {'(',')',' '} then
+	if q ∉ {"Err"} and σ ∈ {' ',';',',',':','\n','\t'} then
 		if σ ∉ {' '} then  s=String.valueOf(σ) end
 		if q=="I" then return s
-    	elseif q=="plus" then return "+"+s 
-   		elseif q=="times" then return "*"+s
-		elseif q=="Num" then return "n"+s
+    	elseif q=="ROBOT_R" then return "R"+s 
+   		elseif q=="VARS" then return "V"+s
+		elseif q=="BEGIN" then return "B"+s
 		else return "v"+s
  		end
 	else return  λ
