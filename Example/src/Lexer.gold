@@ -39,7 +39,10 @@ function createTransducer():ITransducer begin
 	"left", "r", "ri", "rig", "righ", "right", "a", "ar", "aro", "arou", "aroun", "around", "f", "fa", "fac", "face", 
 	"n", "no", "nor", "nort","north","s", "so", "sou", "sout", "south", "e", "ea", "eas", "east", "w", "we", "wes", 
 	"west", "p", "pu", "put", "pi", "pic", "pick", "B", "Ba", "Bal", "Ball", "Ballo", "Balloo", "Balloon", "Balloons",
-	"C", "Ch", "Chi", "Chip", "Chips", "s", "sk", "ski", "skip","Err"}
+	"C", "Ch", "Chi", "Chip", "Chips", "s", "sk", "ski", "skip","o", "of", "i", "if","t", "th", "the","then", "el", 
+	"els","else", "wh", "whi", "whil", "while","d", "do", "re", "rep", "repe", "repea", "repeat", "ti", "tim","time",
+	"fa","fac", "faci", "facin", "facing", "c", "ca", "can","canP", "canPu","canPut","canPi","canPic", "canPick",
+	"canM", "canMo", "canMov", "canMove", "n", "no", "not",  "Err"}
 	
 	
 	Σ₀:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ ('A' ‥ 'Z')
