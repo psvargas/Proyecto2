@@ -37,11 +37,11 @@ function createTransducer():ITransducer begin
 	"move", "i", "in", "inD", "inDi", "inDir","t","to", "toT", "toTh","toThe", "f", "fr","fro", "fron", "front", 
 	"b", "ba", "bac", "back", "t", "tu", "tur", "turn","l", "le", "lef", "left", "r", "ri", "rig", "righ", "right", 
 	"a", "ar", "aro", "arou", "aroun", "around", "f", "fa", "fac", "face", "n", "no", "nor", "nort","north","s", "so", 
-	"sou", "sout", "south", "e", "ea", "eas", "east", "w", "we", "wes", "west", "p", "pu", "put", "pi", "pic", "pick",
-	"B", "Ba", "Bal", "Ball", "Ballo", "Balloo", "Balloon", "Balloons","C", "Ch", "Chi", "Chip", "Chips", "S", "Sk", 
-	"Ski", "Skip","o", "of", "if","t", "th", "the","then", "el", "els","else", "wh", "whi", "whil", "while","d",
-	"do", "re", "rep", "repe", "repea", "repeat", "ti", "tim","time", "fa","fac", "faci", "facin", "facing", "c", "ca", 
-	"can","canP", "canPu","canPut","canPi","canPic", "canPick","canM", "canMo", "canMov", "canMove", "n", "no", "not",  "Err"}
+	"sou", "sout", "south", "e", "ea", "eas", "east", "w", "we", "wes", "west", "p", "pu", "put", "pi", "pic", "pick", 
+	"o", "of","B", "Ba", "Bal", "Ball", "Ballo", "Balloo", "Balloon", "Balloons","C", "Ch", "Chi", "Chip", "Chips", "S",
+	"Sk", "Ski", "Skip", "if","t", "th", "the","then", "el", "els","else", "wh", "whi", "whil", "while","d","do", 
+	"re", "rep", "repe", "repea", "repeat", "ti", "tim","time","times", "faci", "facin", "facing", "c", "ca", "can",
+	"canP", "canPu","canPut","canPi","canPic", "canPick","canM", "canMo", "canMov", "canMove", "n", "no", "not",  "Err"}
 	
 	
 	Σ₀:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ ('A' ‥ 'Z')
