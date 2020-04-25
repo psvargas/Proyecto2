@@ -1,6 +1,8 @@
 using gold.structures.automaton.*
 using gold.visualization.automaton.*
 
+
+//Autores: Sofia Vargas y Santiago Estupiñan
 procedure main(args:String[]) begin
     lexer = createTransducer()
 	 //testLexer(lexer)
@@ -254,6 +256,8 @@ function δ(q,σ) begin
 	
 	elseif q="I" and σ ∈ ('0' ‥ '9') then return "num"
 	elseif q="num" and σ ∈ ('0' ‥ '9') then return "num"
+	elseif q="num" and σ ∈ ('a' ‥ 'z') then return "Err"
+		
 		
 	elseif q="I" and σ ∈ ('a' ‥ 'z') then return "var"
 	elseif q="var" and σ ∈ ('a' ‥ 'z') then return "var"
@@ -315,7 +319,7 @@ function h(q,σ) begin
 		elseif q=="num" then return "num"+s
 		elseif q=="var" then return "var"+s
 
-		else return "v"+s
+		else return "var"+s
  		end
 	else return  λ
 	end
