@@ -39,15 +39,18 @@ function createTransducer():ITransducer begin
 	"left", "r", "ri", "rig", "righ", "right", "a", "ar", "aro", "arou", "aroun", "around", "f", "fa", "fac", "face", 
 	"n", "no", "nor", "nort","north","s", "so", "sou", "sout", "south", "e", "ea", "eas", "east", "w", "we", "wes", 
 	"west", "p", "pu", "put", "pi", "pic", "pick", "B", "Ba", "Bal", "Ball", "Ballo", "Balloo", "Balloon", "Balloons",
-	"C", "Ch", "Chi", "Chip", "Chips", "s", "sk", "ski", "skip","o", "of", "i", "if","t", "th", "the","then", "el", 
+	"C", "Ch", "Chi", "Chip", "Chips", "S", "Sk", "Ski", "Skip","o", "of", "i", "if","t", "th", "the","then", "el", 
 	"els","else", "wh", "whi", "whil", "while","d", "do", "re", "rep", "repe", "repea", "repeat", "ti", "tim","time",
 	"fa","fac", "faci", "facin", "facing", "c", "ca", "can","canP", "canPu","canPut","canPi","canPic", "canPick",
 	"canM", "canMo", "canMov", "canMove", "n", "no", "not",  "Err"}
 	
 	
 	Σ₀:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ ('A' ‥ 'Z')
-	Σ:= Σ₀ ∪ {':',';', '('  , ')', ' ', ',', '\n', '\t', '_'} 
-	Out:={'(',')','+','*','v','n'} 
+	Σ:= Σ₀ ∪ {':', ' ', ',', '\n', '\t', '_'} 
+	//
+	Out:={'(',')', 'R', 'V', 'B', 'E', 'A','v','n','m','D','T','f','b',
+		't','l','r','a','F','o','s','w','e','P','p','g','c','S','I','W',
+		'X','Y','M','N'} 
 	q₀:="I"
 	F:= {"I"}
 	return 	GDeterministicTransducer(Q,Σ,Out,q₀,F,δ,g,h)
@@ -55,7 +58,143 @@ end
 
 function δ(q,σ) begin
 	if (q = "Err") then return "Err"
-	elseif  σ ∈ {'(',')',' '} then return "I"	
+	elseif  σ ∈ {' ',';',',',':'} then return "I"	
+	elseif q="END" then return "I"
+		
+	elseif q= "I" and σ='R' then return "R"
+   	elseif q= "I" and σ='V' then return "V"
+   	elseif q= "I" and σ='B' then return "B"
+   	elseif q= "I" and σ='a' then return "a"
+   	elseif q= "I" and σ='m' then return "m"
+   	elseif q= "I" and σ='t' then return "t"
+   	elseif q= "I" and σ='f' then return "f"
+   	elseif q= "I" and σ='p' then return "p"
+   	elseif q= "I" and σ='S' then return "S"
+   	elseif q= "I" and σ='l' then return "l"
+   	elseif q= "I" and σ='r' then return "r"
+   	elseif q= "I" and σ='n' then return "n"
+   	elseif q= "I" and σ='e' then return "e"
+   	elseif q= "I" and σ='w' then return "w"
+   	elseif q= "I" and σ='i' then return "i"
+   	elseif q= "I" and σ='C' then return "C"
+   	elseif q= "I" and σ='c' then return "c"   	
+   	elseif q= "I" and σ='b' then return "b"
+   	elseif q= "I" and σ='s' then return "s"
+   	elseif q= "I" and σ='E' then return "E"
+   		
+		
+	elseif q= "R" and σ='O' then return "RO"
+	elseif q= "RO" and σ='B' then return "ROB"
+	elseif q= "ROB" and σ='O' then return "ROBO"
+	elseif q= "ROBO" and σ='T' then return "ROBOT"
+	elseif q= "ROBOT" and σ='_' then return "ROBOT_"
+	elseif q= "ROBOT_" and σ='R' then return "ROBOT_R"
+	
+	elseif q= "V" and σ='A' then return "VA"
+	elseif q= "VA" and σ='R' then return "VAR"
+	elseif q= "VAR" and σ='S' then return "VARS"
+	
+	elseif q= "B" and σ='E' then return "BE"
+	elseif q= "BE" and σ='G' then return "BEG"
+	elseif q= "BEG" and σ='I' then return "BEGI"
+	elseif q= "BEGI" and σ='N' then return "BEGIN"
+	
+	elseif q= "E" and σ='N' then return "EN"
+	elseif q= "EN" and σ='D' then return "END"
+		
+	elseif q= "a" and σ='s' then return "as"
+	elseif q= "as" and σ='s' then return "ass"
+	elseif q= "ass" and σ='i' then return "assi"
+	elseif q= "assi" and σ='g' then return "assig"
+	elseif q= "assig" and σ='n' then return "assign"
+		
+	elseif q="I" and σ ∈ ('0' ‥ '9') then return "num"
+	elseif q="I" and σ ∈ ('a' ‥ 'z') then return "var"
+	elseif q="I" then return "I"	
+	
+	elseif q= "m" and σ='o' then return "mo"
+	elseif q= "mo" and σ='v' then return "mov"
+	elseif q= "mov" and σ='e' then return "move"
+		
+	elseif q= "move" and σ='D' then return "moveD"
+	elseif q= "moveD" and σ='i' then return "moveDi"
+	elseif q= "moveDi" and σ='r' then return "moveDir"
+	
+	elseif q= "t" and σ='u' then return "tu"
+	elseif q= "tu" and σ='r' then return "tur"
+	elseif q= "tur" and σ='n' then return "turn"
+	
+	elseif q= "f" and σ='a' then return "fa"
+	elseif q= "fa" and σ='c' then return "fac"
+	elseif q= "fac" and σ='e' then return "face"
+	
+	elseif q= "P" and σ='u' then return "Pu"
+	elseif q= "Pu" and σ='t' then return "Put"
+	
+	elseif q= "P" and σ='i' then return "Pi"
+	elseif q= "Pi" and σ='c' then return "Pic"
+	elseif q= "Pic" and σ='k' then return "Pick"
+	
+	elseif q= "S" and σ='k' then return "Sk"
+	elseif q= "Sk" and σ='i' then return "Ski"
+	elseif q= "Ski" and σ='p' then return "Skip"
+	
+	elseif q= "l" and σ='e' then return "le"
+	elseif q= "le" and σ='f' then return "lef"
+	elseif q= "lef" and σ='t' then return "left"
+	
+	elseif q= "r" and σ='i' then return "ri"
+	elseif q= "ri" and σ='g' then return "rig"
+	elseif q= "rig" and σ='h' then return "righ"
+	elseif q= "righ" and σ='t' then return "right"
+	
+	elseif q= "a" and σ='r' then return "ar"
+	elseif q= "ar" and σ='o' then return "aro"
+	elseif q= "aro" and σ='u' then return "arou"
+	elseif q= "arou" and σ='n' then return "aroun"
+	elseif q= "aroun" and σ='d' then return "around"
+	
+	elseif q= "n" and σ='o' then return "no"
+	elseif q= "no" and σ='r' then return "nor"
+	elseif q= "nor" and σ='t' then return "nort"
+	elseif q= "nort" and σ='h' then return "north"
+	
+	elseif q= "s" and σ='o' then return "so"
+	elseif q= "so" and σ='u' then return "sou"
+	elseif q= "sou" and σ='t' then return "sout"
+	elseif q= "sout" and σ='h' then return "south"
+	
+	elseif q= "e" and σ='a' then return "ea"
+	elseif q= "ea" and σ='s' then return "eas"
+	elseif q= "eas" and σ='t' then return "east"
+	
+	elseif q= "w" and σ='e' then return "we"
+	elseif q= "we" and σ='s' then return "wes"
+	elseif q= "wes" and σ='t' then return "west"
+	
+	elseif q= "B" and σ='a' then return "Ba"
+	elseif q= "Ba" and σ='l' then return "Bal"
+	elseif q= "Bal" and σ='l' then return "Ball"
+	elseif q= "Ball" and σ='o' then return "Ballo"
+	elseif q= "Ballo" and σ='o' then return "Balloo"
+	elseif q= "Balloo" and σ='n' then return "Balloon"
+	elseif q= "Balloon" and σ='s' then return "Balloons"
+	
+	elseif q= "C" and σ='h' then return "Ch"
+	elseif q= "Ch" and σ='i' then return "Chi"
+	elseif q= "Chi" and σ='p' then return "Chip"
+	elseif q= "Chip" and σ='s' then return "Chips"
+	
+	elseif q= "f" and σ='r' then return "fr"
+	elseif q= "fr" and σ='o' then return "fro"
+	elseif q= "fro" and σ='n' then return "fron"
+	elseif q= "fron" and σ='t' then return "front"
+	
+	elseif q= "b" and σ='a' then return "ba"
+	elseif q= "ba" and σ='c' then return "bac"
+	elseif q= "bac" and σ='k' then return "back"
+	
+		
     elseif q="I" and σ='p' then return "p"
 	elseif q="I" and σ='t' then return "t"
 	elseif q="I" and σ ∈ ('0' ‥ '9') then return "Num"
