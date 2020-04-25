@@ -3,7 +3,10 @@ using gold.visualization.automaton.*
 
 procedure main(args:String[]) begin
     lexer = createTransducer()
-	 testLexer(lexer)
+	 //testLexer(lexer)
+	 GAutomataFrame.show(lexer)
+	 
+	 
 end
   
         
@@ -47,11 +50,11 @@ function createTransducer():ITransducer begin
 	Σ₀:=('0'‥'9') ∪ ('a' ‥ 'z') ∪ ('A' ‥ 'Z')
 	Σ:= Σ₀ ∪ {':', ' ', ',', '\n', '\t', '_'} 
 	//
-	Out:={'(',')', 'R', 'V', 'B', 'E', 'A','v','n','m','D','T','f','b',
+	Out:={'!','(',')', 'R', 'V', 'B', 'E', 'A','v','n','m','D','T','f','b',
 		't','l','r','a','F','o','s','w','e','P','p','g','c','S','I','W',
-		'X','Y','M','N'} 
+		'X','Y','M','N',' ',';',',',':','\n','\t','i','h'} ∪ ('a' ‥ 'z') ∪ ('A' ‥ 'Z')
 	q₀:="I"
-	F:= {"I"}
+	F:= {"I", "END"}
 	return 	GDeterministicTransducer(Q,Σ,Out,q₀,F,δ,g,h)
 end
 
@@ -250,10 +253,13 @@ function δ(q,σ) begin
 	elseif q= "no" and σ='t' then return "not"
 	
 	elseif q="I" and σ ∈ ('0' ‥ '9') then return "num"
+	elseif q="num" and σ ∈ ('0' ‥ '9') then return "num"
+		
 	elseif q="I" and σ ∈ ('a' ‥ 'z') then return "var"
+	elseif q="var" and σ ∈ ('a' ‥ 'z') then return "var"
 	//elseif q="I" then return "I"	
 	
-    else  return "Err"
+    else  return "var"
     end	
 end 
 
@@ -268,11 +274,47 @@ function h(q,σ) begin
 	s := λ
 
 	if q ∉ {"Err"} and σ ∈ {' ',';',',',':','\n','\t'} then
-		if σ ∉ {' '} then  s=String.valueOf(σ) end
+		if σ ∉ {' ','\n','\t'} then  s=String.valueOf(σ) end
 		if q=="I" then return s
     	elseif q=="ROBOT_R" then return "R"+s 
    		elseif q=="VARS" then return "V"+s
 		elseif q=="BEGIN" then return "B"+s
+		elseif q=="END" then return "E"+s
+		elseif q=="assign" then return "A"+s
+		elseif q=="move" then return "M"+s
+		elseif q=="inDir" then return "Dir"+s
+		elseif q=="toThe" then return "To"+s
+		elseif q=="front" then return "f"+s
+		elseif q=="back" then return "b"+s
+		elseif q=="turn" then return "t"+s
+		elseif q=="left" then return "l"+s
+		elseif q=="right" then return "r"+s
+		elseif q=="around" then return "a"+s
+		elseif q=="face" then return "fa"+s
+		elseif q=="north" then return "n"+s
+		elseif q=="south" then return "s"+s
+		elseif q=="west" then return "w"+s
+		elseif q=="east" then return "e"+s
+		elseif q=="put" then return "P"+s
+		elseif q=="pick" then return "p"+s
+		elseif q=="of" then return "of"+s
+		elseif q=="Balloons" then return "Ba"+s
+		elseif q=="Chips" then return "Ch"+s
+		elseif q=="if" then return "If"+s
+		elseif q=="then" then return "Th"+s
+		elseif q=="else" then return "El"+s
+		elseif q=="while" then return "Wh"+s
+		elseif q=="do" then return "Do"+s
+		elseif q=="repeat" then return "Rpt"+s
+		elseif q=="times" then return "Tms"+s
+		elseif q=="facing" then return "Fcn"+s
+		elseif q=="canPick" then return "cPi"+s
+		elseif q=="canPut" then return "cPu"+s
+		elseif q=="canMove" then return "cM"+s
+		elseif q=="not" then return "!"+s
+		elseif q=="num" then return "num"+s
+		elseif q=="var" then return "var"+s
+
 		else return "v"+s
  		end
 	else return  λ
